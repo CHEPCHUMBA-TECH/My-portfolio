@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claudia Chepchumba | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #0077cc;
+    --primary-dark: #005fa3;
+    --bg-light: #f5f8ff;
+    --bg-alt: #f9f9f9;
+    --text-color: #333;
+    --font-sans: 'Poppins', Arial, sans-serif;
+}
+
+*, *::before, *::after { 
+    box-sizing: border-box; 
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    color: var(--text-color);
+    scroll-behavior: smooth;
+    background: #fff;
+}
+
+a { 
+    text-decoration: none; 
+    color: inherit; 
+    transition: color 0.25s; 
+}
+
+h2, h3 { 
+    color: var(--primary);
+    font-weight: 600;
+}
+
+p {
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+#nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 110;
+}
+
+nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s;
+    z-index: 105;
+    pointer-events: none;
+}
+
+nav.open {
+    transform: scaleY(1);
+    pointer-events: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a { 
+    font-weight: 400; 
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s;
+}
+
+nav a:hover::after { 
+    width: 100%; 
+}
+
+nav a:hover { 
+    color: var(--primary-dark); 
+}
+
+/* Hero / Homepage */
+.hero {
+    padding: 120px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--bg-light) 100%);
+    color: #fff;
+}
+
+.hero h1 { 
+    font-size: 48px; 
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.hero p { 
+    max-width: 650px; 
+    margin: auto; 
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    display: block;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #fff;
+    color: var(--primary);
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-right: 10px;
+    font-weight: 600;
+    transition: background 0.25s, color 0.25s, transform 0.25s;
+    cursor: pointer;
+}
+
+.btn:hover { 
+    background: var(--primary-dark); 
+    color: #fff; 
+    transform: scale(1.05);
+}
+
+/* Homepage Features Section */
+.homepage {
+    padding: 70px 40px;
+    background: #fff;
+}
+
+.homepage-title {
+    text-align: center;
+    color: var(--primary);
+    font-size: 36px;
+    margin-bottom: 50px;
+    font-weight: 600;
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: 15px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: var(--bg-light);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-left: 4px solid var(--primary);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.feature-card h3 {
+    margin-top: 0;
+    border-left: none;
+    padding-left: 0;
+    font-size: 22px;
+}
+
+.feature-card p {
+    font-weight: 300;
+    color: #666;
+    font-size: 15px;
+}
+
+/* Section styles */
+.about, .cv, .hobbies, .contact {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about h2, .cv h2, .hobbies h2, .contact h2 {
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.about > p, .cv > p, .contact > p {
+    font-weight: 300;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    border-left: 4px solid var(--primary);
+    padding-left: 15px;
+}
+
+.cv ul, .hobbies ul { 
+    max-width: 100%;
+    margin: auto 0; 
+    padding-left: 20px;
+}
+
+.cv li, .hobbies li {
+    font-weight: 300;
+    margin-bottom: 10px;
+    line-height: 1.7;
+}
+
+.cv strong, .hobbies strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+section { 
+    padding: 70px 40px; 
+}
+
+section:nth-of-type(even) { 
+    background: var(--bg-alt); 
+}
+
+.projects {
+    margin-bottom: 30px;
+}
+
+.projects h2 {
+    text-align: center;
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+}
+
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 260px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 4px solid var(--primary);
+}
+
+.project-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.project-card h3 {
+    border-left: none;
+    padding-left: 0;
+    margin-top: 15px;
+    color: var(--primary);
+}
+
+.project-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.project-card p {
+    font-weight: 300;
+    color: #666;
+    font-size: 14px;
+}
+
+.project-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 18px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 5px;
+    transition: background 0.25s;
+    font-weight: 500;
+}
+
+.project-card a:hover { 
+    background: var(--primary-dark); 
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    text-align: center;
+    padding: 20px;
+    background: var(--bg-light);
+    border-radius: 10px;
+    border-left: 4px solid var(--primary);
+    flex: 1;
+    min-width: 200px;
+    max-width: 280px;
+}
+
+.contact-item p {
+    margin: 0 0 15px 0;
+    font-weight: 400;
+    color: #666;
+}
+
+.contact-item a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 5px;
+    transition: background 0.25s;
+    font-weight: 600;
+}
+
+.contact-item a:hover {
+    background: var(--primary-dark);
+}
+
+.contact-whatsapp a {
+    background: #25D366;
+}
+
+.contact-whatsapp a:hover {
+    background: #1eac50;
+}
+
+.contact-linkedin a {
+    background: #0A66C2;
+}
+
+.contact-linkedin a:hover {
+    background: #084a99;
+}
+
+/* Social Links Section */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 24px;
+    transition: background 0.25s, transform 0.25s;
+}
+
+.social-links a:hover {
+    background: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+.social-links .linkedin {
+    background: #0A66C2;
+}
+
+.social-links .linkedin:hover {
+    background: #084a99;
+}
+
+.social-links .whatsapp {
+    background: #25D366;
+}
+
+.social-links .whatsapp:hover {
+    background: #1eac50;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 99;
+}
+
+#back-to-top.visible { 
+    opacity: 1; 
+    visibility: visible; 
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--bg-alt);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    font-weight: 300;
+    color: #666;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+@media(max-width: 768px) {
+    #nav-toggle { 
+        display: block; 
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 0;
+    }
+    
+    .projects-container, .features-container { 
+        flex-direction: column; 
+        align-items: center; 
+    }
+    
+    header {
+        padding: 20px;
+    }
+    
+    section {
+        padding: 50px 20px;
+    }
+    
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .about, .cv, .hobbies, .contact {
+        padding: 0;
+    }
+    
+    .homepage-title {
+        font-size: 28px;
+    }
+    
+    .btn {
+        display: block;
+        margin: 10px auto;
+    }
+    
+    .contact-methods {
+        flex-direction: column;
+    }
+    
+    .contact-item {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .social-links {
+        flex-wrap: wrap;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h2>Claudia Chepchumba</h2>
+    <button id="nav-toggle" aria-label="Toggle navigation">☰</button>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#cv">CV</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#hobbies">Interests</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero fade-in">
+    <img src="Prof.jpeg" alt="Claudia Chepchumba Profile Photo" class="profile-photo">
+    <h1>Teacher of English &amp; Literature | ICT</h1>
+    <p>I am passionate about integrating technology into teaching and creating engaging digital learning experiences.</p>
+    <a href="#projects" class="btn">View My Projects</a>
+</section>
+
+<!-- Homepage Features Section -->
+<section class="homepage fade-in">
+    <h2 class="homepage-title">What I Offer</h2>
+    <div class="features-container">
+        <div class="feature-card">
+            <span class="feature-icon">📚</span>
+            <h3>Expert Teaching</h3>
+            <p>Passionate educator with Bachelor's degree in Education, creating student-centered learning environments that foster critical thinking and engagement.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">💻</span>
+            <h3>Tech Integration</h3>
+            <p>Pursuing a Diploma in IT, I seamlessly blend technology with pedagogy to enhance modern educational experiences and digital literacy.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🎯</span>
+            <h3>Curriculum Design</h3>
+            <p>Specialized in developing structured, curriculum-aligned lesson plans and comprehensive assessment tools for diverse learners.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🌐</span>
+            <h3>Web Development</h3>
+            <p>Building educational websites, attendance systems, and student record management solutions using HTML, CSS, JavaScript, and SQL.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">👩‍🏫</span>
+            <h3>Online Tutoring</h3>
+            <p>Experienced in remote instruction with customized digital materials, supporting learners in grammar, writing, literature, and exam prep.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🚀</span>
+            <h3>Innovation in Education</h3>
+            <p>Committed to bridging traditional teaching methods with digital transformation, simplifying classroom management and improving efficiency.</p>
+        </div>
+    </div>
+</section>
+
+<!-- About Me -->
+<section id="about" class="about fade-in">
+    <h2>About Me</h2>
+
+    <p>I am a trained and passionate educator with a Bachelor's degree in Education (English & Literature). My academic background has equipped me with strong skills in curriculum interpretation, lesson planning, learner assessment, and classroom management. I have experience teaching at secondary school level, where I consistently focus on creating interactive, student-centered learning environments that encourage critical thinking and active participation.</p>
+
+    <p>In addition to my teaching qualification, I am currently pursuing a Diploma in Information Technology at Kabarak University. This training enables me to integrate digital tools and modern technologies into teaching and learning. I strongly believe that education in the 21st century must combine subject mastery with technological competence to prepare learners for a rapidly evolving world.</p>
+
+    <p>My professional interests include digital curriculum development, online learning systems, educational website development, and designing technology-supported assessment tools. I am particularly passionate about building digital solutions that simplify classroom management and improve learning efficiency.</p>
+
+    <p>I am committed to continuous professional growth, innovation in education, and maintaining high academic standards. My goal is to work in an institution that values both academic excellence and technology integration in teaching practice.</p>
+</section>
+
+<!-- CV Section -->
+<section id="cv" class="cv fade-in">
+    <h2>Professional Profile</h2>
+
+    <p>I am a dedicated Teacher of English and Literature with a strong commitment to learner-centered education and academic excellence. I combine pedagogical expertise with growing technical competence in Information Technology to design engaging, effective, and modern learning experiences.</p>
+
+    <p>My teaching philosophy is based on structured planning, interactive delivery, continuous assessment, and positive classroom relationships. I focus on helping learners develop critical thinking, communication skills, creativity, and confidence while integrating digital tools to enhance participation and learning outcomes.</p>
+
+    <p>Through my IT training, I have developed skills in website development, database design, and basic application development. I actively apply these skills in educational projects such as school websites, attendance tracking systems, and student record management solutions. I am motivated to bridge the gap between traditional teaching methods and digital transformation in education.</p>
+
+    <h3>Education</h3>
+    <ul>
+        <li>Bachelor of Education (English & Literature) – University of Eastern Africa, Baraton</li>
+        <li>Diploma in Information Technology (In Progress) – Kabarak University (Expected Dec 2026)</li>
+        <li>TEFL Certificate</li>
+    </ul>
+
+    <h3>Professional Experience</h3>
+    <ul>
+        <li><strong>Teacher of English & Literature – Secondary Level</strong>
+            <ul>
+                <li>Planned and delivered curriculum-aligned lessons for diverse learners.</li>
+                <li>Designed structured schemes of work and assessment tools.</li>
+                <li>Used digital tools to support teaching and learning.</li>
+                <li>Monitored student progress and provided individualized academic support.</li>
+                <li>Maintained structured classroom management systems.</li>
+            </ul>
+        </li>
+
+        <li><strong>Online English Tutor – Remote Instruction</strong>
+            <ul>
+                <li>Conducted structured virtual lessons for individual learners.</li>
+                <li>Designed customized digital lesson materials.</li>
+                <li>Supported learners in grammar, writing, literature analysis, and exam preparation.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Key Skills</h3>
+    <ul>
+        <li><strong>Teaching & Pedagogy:</strong> Lesson planning, classroom management, learner assessment, mentorship.</li>
+        <li><strong>Educational Technology:</strong> Digital lesson design, ICT integration, online learning tools.</li>
+        <li><strong>Technical Skills:</strong> HTML, CSS, JavaScript (basic), SQL database design.</li>
+        <li><strong>Professional Skills:</strong> Communication, organization, adaptability, leadership, problem-solving.</li>
+    </ul>
+
+    <h3>Referees</h3>
+    <p>Available upon request.</p>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="projects fade-in">
+    <h2>Professional Projects</h2>
+    <div class="projects-container">
+
+        <div class="project-card">
+            <img src="images/project1.jpg" alt="School Website">
+            <h3>School Website Development</h3>
+            <p>Designed and developed a fully responsive school website using HTML, CSS, and JavaScript.</p>
+            <a href="#">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <img src="images/project2.jpg" alt="Attendance App">
+            <h3>Responsive Class Attendance Application</h3>
+            <p>Developed a digital attendance tracking system to simplify record management and improve monitoring.</p>
+            <a href="#">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <img src="images/project3.jpg" alt="Student Records">
+            <h3>Student Records Database System</h3>
+            <p>Designed a structured SQL-based student records management system for secure data storage.</p>
+            <a href="#">View Project</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- Hobbies / Interests -->
+<section id="hobbies" class="hobbies fade-in">
+    <h2>Interests & Personal Development</h2>
+    <ul>
+        <li><strong>Baking:</strong> I enjoy baking cakes and experimenting with new recipes.</li>
+        <li><strong>Educational Technology Innovation</strong></li>
+        <li><strong>Web Development Practice</strong></li>
+        <li><strong>Curriculum Design</strong></li>
+        <li><strong>Student Mentorship</strong></li>
+        <li><strong>Professional Growth</strong></li>
+        <li><strong>Reading & Research</strong></li>
+        <li><strong>Spiritual Reflection</strong></li>
+    </ul>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact fade-in">
+    <h2>Contact Me</h2>
+    <div class="contact-methods">
+        <div class="contact-item">
+            <p>📞 <strong>Phone</strong></p>
+            <a href="tel:+254717110505">Call: 0717110505</a>
+        </div>
+        <div class="contact-item">
+            <p>📧 <strong>Email</strong></p>
+            <a href="mailto:claudiachepchumba3@gmail.com">Send Email</a>
+        </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/claudia-chepchumba" class="linkedin" target="_blank" title="Connect on LinkedIn">in</a>
+        <a href="https://wa.me/254717110505?text=Hello%20Claudia%20I%20would%20like%20to%20know%20more" class="whatsapp" target="_blank" title="Chat on WhatsApp">💬</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 Claudia Chepchumba. All rights reserved.</p>
+    <p>Passionate Educator | Technology Innovator | Web Developer</p>
+</footer>
+
+<!-- Back to top button -->
+<div id="back-to-top">↑</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile nav toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const nav = document.querySelector('nav');
+    
+    if (navToggle && nav) {
+        navToggle.addEventListener('click', function() {
+            nav.classList.toggle('open');
+        });
+    }
+
+    // Reveal sections on scroll
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    const sections = document.querySelectorAll('section');
+    sections.forEach(function(sec) {
+        observer.observe(sec);
+    });
+
+    // Back to top button
+    const back = document.getElementById('back-to-top');
+    if (back) {
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                back.classList.add('visible');
+            } else {
+                back.classList.remove('visible');
+            }
+        });
+        
+        back.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+});
+</script>
+
+</body>
+</html>
